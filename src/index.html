@@ -23,19 +23,35 @@
                 <!-- Left Column -->
                 <div class="bg-white shadow rounded-2xl p-4 sm:p-6">
                     <div class="text-lg sm:text-xl font-semibold mb-4">Search Weather</div>
-                    <label for="city" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Enter City
-                        Name</label>
+                    <label for="city" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
+                        Enter City Name
+                    </label>
                     <input type="text" id="city" name="city" placeholder="e.g., Mumbai"
                         class="w-full border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400" />
                     <button id="searchBtn"
-                        class="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg text-sm sm:text-base">Search</button>
+                        class="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg text-sm sm:text-base">
+                        Search
+                    </button>
+
+                    <!-- Dropdown for recently searched cities (hidden initially) -->
+                    <div id="recentCitiesContainer" class="mt-4 hidden">
+                        <label for="recentCities" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
+                            Recently Searched
+                        </label>
+                        <select id="recentCities"
+                            class="w-full border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <option value="">-- Select a city --</option>
+                        </select>
+                    </div>
 
                     <div class="my-4 text-center font-semibold text-gray-500">OR</div>
 
                     <button id="currentLocationBtn"
-                        class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg text-sm sm:text-base">Use
-                        Current Location</button>
+                        class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg text-sm sm:text-base">
+                        Use Current Location
+                    </button>
                 </div>
+
 
                 <div class="bg-white shadow rounded-2xl p-4 sm:p-6">
                     <div class="text-lg sm:text-xl font-semibold mb-4">Weather Details</div>
@@ -61,7 +77,7 @@
                         <div id="weatherAlert" class="mt-3 text-red-600 font-semibold hidden"></div>
                     </div>
                 </div>
-                
+
             </div>
 
             <!-- Bottom: Full Row Section with 5 Cards -->
