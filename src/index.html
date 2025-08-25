@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <title>Weather Forecast</title>
+</head>
+
+<body class="bg-gray-100">
+    <div class="min-h-screen p-4 sm:p-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Top: Dashboard -->
+            <div class="bg-white shadow rounded-2xl p-4 sm:p-6 mb-6">
+                <div class="text-xl sm:text-2xl font-bold text-center">Dashboard</div>
+                <div class="text-gray-600 text-center mt-2 text-sm sm:text-base">Weather Forecast</div>
+            </div>
+
+            <!-- Middle: 2 Column Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
+                <!-- Left Column -->
+                <div class="bg-white shadow rounded-2xl p-4 sm:p-6">
+                    <div class="text-lg sm:text-xl font-semibold mb-4">Search Weather</div>
+                    <label for="city" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Enter City
+                        Name</label>
+                    <input type="text" id="city" name="city" placeholder="e.g., Mumbai"
+                        class="w-full border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    <button id="searchBtn"
+                        class="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg text-sm sm:text-base">Search</button>
+
+                    <div class="my-4 text-center font-semibold text-gray-500">OR</div>
+
+                    <button id="currentLocationBtn"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg text-sm sm:text-base">Use
+                        Current Location</button>
+                </div>
+
+                <div class="bg-white shadow rounded-2xl p-4 sm:p-6">
+                    <div class="text-lg sm:text-xl font-semibold mb-4">Weather Details</div>
+                    <div class="bg-gray-50 rounded-xl p-4 shadow-inner text-center">
+                        <img id="weatherIcon" src="" alt="Weather Icon" class="mx-auto mb-2 w-20 h-20">
+                        <div class="text-base sm:text-lg font-bold mb-2" id="cityName">--</div>
+                        <div id="weatherType" class="mb-2 text-gray-600">--</div>
+                        <div class="flex justify-between mb-2 text-sm sm:text-base">
+                            <span class="font-medium">Temperature:</span>
+                            <span id="temperature">-- °C</span>
+                            <button id="tempToggle" type="button" class="px-2 py-1 border rounded text-xs">
+                                Show °F
+                            </button>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm sm:text-base">
+                            <span class="font-medium">Wind:</span>
+                            <span id="wind">-- km/h</span>
+                        </div>
+                        <div class="flex justify-between text-sm sm:text-base">
+                            <span class="font-medium">Humidity:</span>
+                            <span id="humidity">-- %</span>
+                        </div>
+                        <div id="weatherAlert" class="mt-3 text-red-600 font-semibold hidden"></div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Bottom: Full Row Section with 5 Cards -->
+            <div class="bg-white shadow rounded-2xl p-4 sm:p-6">
+                <div class="text-lg sm:text-xl font-semibold mb-4">City Weather Overview</div>
+                <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="bg-gray-50 rounded-lg p-4 shadow text-sm sm:text-base">
+                        <div class="font-bold">Day 1</div>
+                        <div>Temperature: -- °C</div>
+                        <div>Wind: -- km/h</div>
+                        <div>Humidity: -- %</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4 shadow text-sm sm:text-base">
+                        <div class="font-bold">Day 2</div>
+                        <div>Temperature: -- °C</div>
+                        <div>Wind: -- km/h</div>
+                        <div>Humidity: -- %</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4 shadow text-sm sm:text-base">
+                        <div class="font-bold">Day 3</div>
+                        <div>Temperature: -- °C</div>
+                        <div>Wind: -- km/h</div>
+                        <div>Humidity: -- %</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4 shadow text-sm sm:text-base">
+                        <div class="font-bold">Day 4</div>
+                        <div>Temperature: -- °C</div>
+                        <div>Wind: -- km/h</div>
+                        <div>Humidity: -- %</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4 shadow text-sm sm:text-base">
+                        <div class="font-bold">Day 5</div>
+                        <div>Temperature: -- °C</div>
+                        <div>Wind: -- km/h</div>
+                        <div>Humidity: -- %</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
