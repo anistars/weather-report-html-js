@@ -29,12 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Avoid duplicates, latest at top
         recentCities = [city, ...recentCities.filter(c => c.toLowerCase() !== city.toLowerCase())];
-
-        // Keep only 5
-        if (recentCities.length > 5) {
-            recentCities = recentCities.slice(0, 5);
-        }
-
         localStorage.setItem("recentCities", JSON.stringify(recentCities));
         updateRecentCitiesDropdown();
     }
