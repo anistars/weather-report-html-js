@@ -190,11 +190,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         const displayDate = new Date(nextDate).toLocaleDateString("en-GB", {
                             day: "2-digit", month: "short", year: "numeric"
                         });
-
-                        weatherBoxes[boxIndex].querySelector(".font-bold").textContent = displayDate;
-                        weatherBoxes[boxIndex].children[1].textContent = `Temperature: ${temp} °C`;
-                        weatherBoxes[boxIndex].children[2].textContent = `Wind: ${wind} km/h`;
-                        weatherBoxes[boxIndex].children[3].textContent = `Humidity: ${humidity} %`;
+                        const box = weatherBoxes[boxIndex];
+                        box.querySelector(".font-bold").textContent = displayDate;
+                        box.querySelector(".temp").textContent = `${temp} °C`;
+                        box.querySelector(".wind").textContent = `${wind} km/h`;
+                        box.querySelector(".humidity").textContent = `${humidity} %`;
 
                         date.setDate(date.getDate() + 1);
                         nextDate = date.toISOString().split("T")[0];
