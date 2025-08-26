@@ -70,6 +70,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // -------------------- Show errors --------------------
+    function showError(message) {
+    const errorDiv = document.getElementById("errorCity");
+    errorDiv.textContent = "❌ " + message;
+    errorDiv.classList.remove("hidden");
+    errorDiv.style.display = "block";   // force show
+    errorDiv.style.color = "red";       // force red color
+    errorDiv.style.fontWeight = "bold";
+    }
+
+    function clearError() {
+        const errorDiv = document.getElementById("errorCity");
+        errorDiv.textContent = "";
+        errorDiv.classList.add("hidden");
+    }
+
     // -------------------- API Calls --------------------
     function fetchWeatherData(city) {
         const weatherapiUrlCurrentDate = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}`;
@@ -88,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(data => {
                 if (data.cod !== 200) throw new Error("City not found in Current Weather API");
+
+                clearError(); // ✅ Clear previous errors when successful
                 saveCityToLocalStorage(data.name);
 
                 // 🌡️ Temperature
@@ -158,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(data => {
                 if (data.cod !== "200") throw new Error("City not found in Forecast API");
+                clearError(); // ✅ Clear previous errors when successful
 
                 const presentDateJson = data.list[0].dt_txt;
                 const date = new Date(presentDateJson);
@@ -191,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => {
                 console.error("Weather fetch error:", error.message);
-                alert("❌ " + error.message);
+                showError(error.message);
             });
     }
 
