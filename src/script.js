@@ -228,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    // -------------------- Fetch by Coords --------------------
     function fetchWeatherDataByCoords(lat, lon) {
         const apiKey = "0f8a425c48ba79891ebea04d17e14186";
         const weatherapiUrlCurrentDate = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;

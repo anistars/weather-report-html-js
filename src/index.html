@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="output.css"> <!-- Tailwind compiled CSS -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <title>Weather Forecast</title>
 </head>
@@ -26,11 +26,14 @@
                 <div class="bg-gray-800 shadow-md rounded-2xl p-6">
                     <h2 class="text-lg sm:text-xl font-semibold mb-4 text-white">🔍 Search Weather</h2>
 
+                    <!-- ❌ Error message box -->
                     <div id="errorCity" class="hidden text-red-500 font-bold mb-3 text-sm sm:text-base"></div>
 
+                    <!-- 🌆 City input -->
                     <label for="city" class="block text-gray-300 font-medium mb-2 text-sm sm:text-base">
                         Enter City Name
                     </label>
+                    <!-- 🔍 Search button -->
                     <input type="text" id="city" name="city" placeholder="e.g., Mumbai"
                         class="w-full border border-gray-600 bg-gray-700 text-gray-200 rounded-lg p-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
@@ -52,6 +55,7 @@
 
                     <div class="my-4 text-center text-gray-400 font-semibold">OR</div>
 
+                    <!-- 📍 Current Location Button -->
                     <button id="currentLocationBtn"
                         class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg text-sm sm:text-base shadow">
                         📍 Use Current Location
@@ -63,9 +67,11 @@
                     <h2 class="text-lg sm:text-xl font-semibold mb-4 text-white">🌡 Weather Details</h2>
                     <div id="weatherBackground" class="bg-gray-700 rounded-xl p-6 shadow-inner text-center">
                         <img id="weatherIcon" src="" alt="Weather Icon" class="mx-auto mb-3 w-16 h-16">
+                        <!-- City name + date -->
                         <div id="cityName" class="text-lg sm:text-xl font-bold text-white">--</div>
                         <div id="weatherType" class="text-white mb-2">--</div>
 
+                        <!-- 🌡️ Temperature with toggle -->
                         <div class="flex justify-between items-center mb-2 text-sm sm:text-base">
                             <span class="font-medium text-white">Temperature:</span>
                             <span id="temperature" class="text-white">-- °C</span>
@@ -77,16 +83,19 @@
                             </button>
                         </div>
 
+                        <!-- 🌬 Wind speed -->
                         <div class="flex justify-between mb-2 text-sm sm:text-base">
                             <span class="font-medium text-gray-100">Wind:</span>
                             <span id="wind" class="text-gray-100">-- km/h</span>
                         </div>
 
+                        <!-- 💧 Humidity -->
                         <div class="flex justify-between text-sm sm:text-base">
                             <span class="font-medium text-gray-100">Humidity:</span>
                             <span id="humidity" class="text-gray-100">-- %</span>
                         </div>
 
+                        <!-- 🔔 Weather Alerts -->
                         <div id="weatherAlert" class="hidden mt-3 text-red-100 font-semibold"></div>
                     </div>
                 </div>
@@ -96,6 +105,7 @@
             <!-- Bottom: Full Row Section with 5 Cards -->
             <div class="bg-gray-800 shadow-md rounded-2xl p-6">
                 <h2 class="text-lg sm:text-xl font-semibold mb-4 text-white text-center">📅 5-Day Forecast</h2>
+                <!-- 5 Forecast Cards -->
                 <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     <div class="bg-gray-700 rounded-lg p-4 shadow text-sm sm:text-base">
                         <div class="font-bold text-white">Day 1</div>
@@ -267,6 +277,7 @@
         </div>
     </div>
 </body>
+<!-- 📜 Weather App Script -->
 <script src="script.js"></script>
 
 </html>
