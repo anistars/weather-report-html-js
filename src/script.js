@@ -66,12 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // -------------------- Show errors --------------------
     function showError(message) {
-    const errorDiv = document.getElementById("errorCity");
-    errorDiv.textContent = "❌ " + message;
-    errorDiv.classList.remove("hidden");
-    errorDiv.style.display = "block";   // force show
-    errorDiv.style.color = "red";       // force red color
-    errorDiv.style.fontWeight = "bold";
+        const errorDiv = document.getElementById("errorCity");
+        errorDiv.textContent = "❌ " + message;
+        errorDiv.classList.remove("hidden");
+        errorDiv.style.display = "block";   // force show
+        errorDiv.style.color = "red";       // force red color
+        errorDiv.style.fontWeight = "bold";
     }
 
     function clearError() {
@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 saveCityToLocalStorage(data.name);
 
                 // 🌡️ Temperature
+                const bgContainer = document.getElementById("weatherBackground");
                 const tempCelsius = (data.main.temp - 273.15).toFixed(1);
                 const tempFahrenheit = ((data.main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
                 const windkmph = (data.wind.speed * 3.6).toFixed(1);
@@ -115,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 tempEl.dataset.c = tempCelsius;
                 tempEl.dataset.f = tempFahrenheit;
                 tempEl.dataset.unit = "C";
-                toggleBtn.textContent = "Show °F";
+                toggleBtn.textContent = "🌡 Show °F";
 
                 function toggleTemp() {
                     if (tempEl.dataset.unit === "C") {
@@ -125,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     } else {
                         tempEl.textContent = `${tempEl.dataset.c} °C`;
                         tempEl.dataset.unit = "C";
-                        toggleBtn.textContent = "Show °F";
+                        toggleBtn.textContent = "🌡 Show °F";
                     }
                 }
                 toggleBtn.onclick = toggleTemp;
@@ -140,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     year: "numeric", month: "long", day: "numeric"
                 });
 
-                const weatherMain = data.weather[0].main;
+                const weatherMain = data.weather[0].main.toLowerCase();
                 const weatherDesc = data.weather[0].description;
                 const iconCode = data.weather[0].icon || "01d";
                 const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
@@ -152,6 +153,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("weatherType").textContent = `${weatherMain} (${weatherDesc})`;
                 document.getElementById("weatherIcon").src = iconUrl;
                 document.getElementById("weatherIcon").alt = weatherDesc;
+
+                // 🌈 Dynamic Background
+                if (weatherMain.includes("rain")) {
+                    bgContainer.style.background = "linear-gradient(to bottom, #4a90e2, #1c3d5a)";
+                } else if (weatherMain.includes("clouds")) {
+                    bgContainer.style.background = "linear-gradient(to bottom, #85c2eb, #9fc9f3)";
+                } else if (weatherMain.includes("clear")) {
+                    bgContainer.style.background = "linear-gradient(to bottom, #f9d423, #ff4e50)";
+                } else if (weatherMain.includes("snow")) {
+                    bgContainer.classList.add("bg-blue-100", "bg-gradient-to-b", "from-blue-200", "to-white");
+                } else {
+                    bgContainer.classList.add("bg-gray-100");
+                }
 
                 // 🔔 Extreme heat alert
                 const alertBox = document.getElementById("weatherAlert");
@@ -178,7 +192,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 date.setDate(date.getDate() + 1);
                 let nextDate = date.toISOString().split("T")[0];
 
-                const weatherBoxes = document.querySelectorAll(".grid > div.bg-gray-50");
+                const weatherBoxes = document.querySelectorAll(".grid > div.bg-gray-700");
+                console.log(weatherBoxes);
                 let boxIndex = 0;
 
                 for (let i = 0; i < data.list.length && boxIndex < weatherBoxes.length; i++) {
@@ -191,10 +206,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             day: "2-digit", month: "short", year: "numeric"
                         });
                         const box = weatherBoxes[boxIndex];
-                        box.querySelector(".font-bold").textContent = displayDate;
-                        box.querySelector(".temp").textContent = `${temp} °C`;
-                        box.querySelector(".wind").textContent = `${wind} km/h`;
-                        box.querySelector(".humidity").textContent = `${humidity} %`;
+                        const dateEl = box.querySelector(".font-bold");
+                        const tempEl = box.querySelector(".temp");
+                        const windEl = box.querySelector(".wind");
+                        const humidityEl = box.querySelector(".humidity");
+                        
+                        if (dateEl) dateEl.textContent = displayDate;
+                        if (tempEl) tempEl.textContent = `${temp} °C`;
+                        if (windEl) windEl.textContent = `${wind} km/h`;
+                        if (humidityEl) humidityEl.textContent = `${humidity} %`;
 
                         date.setDate(date.getDate() + 1);
                         nextDate = date.toISOString().split("T")[0];
@@ -228,6 +248,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 const tempFahrenheit = ((data.main.temp - 273.15) * 9 / 5 + 32).toFixed(1);
                 const windkmph = (data.wind.speed * 3.6).toFixed(1);
 
+                // 🌡️ Temperature
+                const bgContainer = document.getElementById("weatherBackground");
+                // bgContainer.style.background = "linear-gradient(to bottom, #f9f9f9, #f9f9f9)";
+
                 // Update UI
                 const tempEl = document.getElementById("temperature");
                 const toggleBtn = document.getElementById("tempToggle");
@@ -236,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 tempEl.dataset.c = tempCelsius;
                 tempEl.dataset.f = tempFahrenheit;
                 tempEl.dataset.unit = "C";
-                toggleBtn.textContent = "Show °F";
+                toggleBtn.textContent = "🌡 Show °F";
 
                 function toggleTemp() {
                     if (tempEl.dataset.unit === "C") {
@@ -246,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     } else {
                         tempEl.textContent = `${tempEl.dataset.c} °C`;
                         tempEl.dataset.unit = "C";
-                        toggleBtn.textContent = "Show °F";
+                        toggleBtn.textContent = "🌡 Show °F";
                     }
                 }
                 toggleBtn.onclick = toggleTemp;
@@ -261,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     year: "numeric", month: "long", day: "numeric"
                 });
 
-                const weatherMain = data.weather[0].main;
+                const weatherMain = data.weather[0].main.toLowerCase();
                 const weatherDesc = data.weather[0].description;
                 const iconCode = data.weather[0].icon || "01d";
                 const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
@@ -281,6 +305,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     alertBox.classList.remove("hidden");
                 } else {
                     alertBox.classList.add("hidden");
+                }
+
+                // 🌈 Dynamic Background
+                if (weatherMain.includes("rain")) {
+                    bgContainer.style.background = "linear-gradient(to bottom, #4a90e2, #1c3d5a)";
+                } else if (weatherMain.includes("clouds")) {
+                    bgContainer.style.background = "linear-gradient(to bottom, #85c2eb, #9fc9f3)";
+                } else if (weatherMain.includes("clear")) {
+                    bgContainer.style.background = "linear-gradient(to bottom, #f9d423, #ff4e50)";
+                } else if (weatherMain.includes("snow")) {
+                    bgContainer.classList.add("bg-blue-100", "bg-gradient-to-b", "from-blue-200", "to-white");
+                } else {
+                    bgContainer.classList.add("bg-gray-100");
                 }
             })
             .catch(error => {
@@ -307,7 +344,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let nextDate = date.toISOString().split("T")[0];
 
                 // Select the weather boxes in the grid
-                const weatherBoxes = document.querySelectorAll(".grid > div.bg-gray-50");
+                const weatherBoxes = document.querySelectorAll(".grid > div.bg-gray-700");
 
                 let boxIndex = 0;
 
@@ -324,12 +361,16 @@ document.addEventListener("DOMContentLoaded", function () {
                             year: "numeric"
                         });
 
-                        // Update the box content
-                        weatherBoxes[boxIndex].querySelector(".font-bold").textContent = displayDate;
-                        weatherBoxes[boxIndex].children[1].textContent = `Temperature: ${temp} °C`;
-                        weatherBoxes[boxIndex].children[2].textContent = `Wind: ${wind} km/h`;
-                        weatherBoxes[boxIndex].children[3].textContent = `Humidity: ${humidity} %`;
+                        const box = weatherBoxes[boxIndex];
+                        const dateEl = box.querySelector(".font-bold");
+                        const tempEl = box.querySelector(".temp");
+                        const windEl = box.querySelector(".wind");
+                        const humidityEl = box.querySelector(".humidity");
 
+                        if (dateEl) dateEl.textContent = displayDate;
+                        if (tempEl) tempEl.textContent = `${temp} °C`;
+                        if (windEl) windEl.textContent = `${wind} km/h`;
+                        if (humidityEl) humidityEl.textContent = `${humidity} %`;
                         // Move to the next date and box
                         date.setDate(date.getDate() + 1);
                         nextDate = date.toISOString().split("T")[0];
