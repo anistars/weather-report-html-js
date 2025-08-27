@@ -1,4 +1,4 @@
-# **🌤️ Weather App**
+# **🌤️ Weather Forecast Website**
 
 A simple and responsive weather application built with JavaScript, TailwindCSS, and the OpenWeatherMap API.
 It allows users to:
@@ -92,10 +92,7 @@ const apiKey = "YOUR_API_KEY_HERE";
 **Use of current location**
 ![alt text](docs/image-2.png)
 
-**🔍 Search with Recent Cities**
-
-(Scrollable dropdown for previously searched cities)
 
 **👨‍💻 Author**
 
-Made with ❤️ by Aniket Rahalkar
+Made with by Aniket Rahalkar
